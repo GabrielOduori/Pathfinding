@@ -13,3 +13,25 @@ distance) for some or all graph locations.
 
 Queue: Data structure used by the search algorithm to decide the order in which to process the graph locations.
 """
+import collections
+
+class SimpleGraph():
+    def __init__(self):
+        self.edges = {}
+
+    
+    def neighbors(self, id):
+        return self.edges[id]
+
+
+
+
+example_graph = SimpleGraph()
+example_graph.edges = {
+    
+    'A': ['B'],
+    'B': ['A', 'C', 'D'],
+    'C': ['A'],
+    'D': ['E', 'A'],
+    'E': ['B']
+}
