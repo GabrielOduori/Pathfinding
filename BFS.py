@@ -37,6 +37,30 @@ class Queue:
     def get(self):
         return self.elements.popleft()
 
+
+class SquareGrid:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.walls = []
+    
+    def in_bounds(self, id):
+        (x, y) = id
+        return 0 <= x < self.width and 0 <= y < self.height
+    
+    def passable(self, id):
+        return id not in self.walls
+    
+    def neighbors(self, id):
+        (x, y) = id
+        results = [(x+1, y), (x, y-1), (x-1, y), (x, y+1)]
+        if (x + y) % 2 == 0: results.reverse() # aesthetics
+        results = filter(self.in_bounds, results)
+        results = filter(self.passable, results)
+        return results
+
+
+
 def breadth_first_search(graph, start):
     """
     Implementing BSF and priting out what we find
@@ -54,7 +78,26 @@ def breadth_first_search(graph, start):
             frontier.put(next)
             visited[next]= True
 
-breadth_first_search(example_graph, 'A')
+
+def breadth_first_search_2(graph, start):
+    # return "came_from"
+    frontier = Queue()
+    frontier.put(start)
+    came_from = {}
+    came_from[start] = None
+    
+    while not frontier.empty():
+        current = frontier.get()
+        for next in graph.neighbors(current):
+            if next not in came_from:
+                frontier.put(next)
+                came_from[next] = current
+    
+    return came_from
+
+
+
+breadth_first_search(example_graph, 'B')
 
 example_graph = SimpleGraph()
 example_graph.edges = {
@@ -65,3 +108,13 @@ example_graph.edges = {
     'D': ['E', 'A'],
     'E': ['B']
 }
+
+
+
+g = SquareGrid(30, 15)
+g.walls = DIAGRAM1_WALLS # long list, [(21, 0), (21, 2), ...]
+draw_grid(g)
+
+
+parents = breadth_first_search_2(g, (8, 7))
+draw_grid(g, width=2, point_to=parents, start=(8, 7))
