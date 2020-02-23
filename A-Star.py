@@ -62,7 +62,7 @@ def a_star_search(graph, start, goal):
                 came_from[next] = current
     return came_from, cost_so_far
 
-    # Trying the code here..
+# Trying the code here..
 from implementation import *
 
 start,goal =  (1,4),(7,8)
