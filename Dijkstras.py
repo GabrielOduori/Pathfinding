@@ -12,6 +12,12 @@ What do we need to change?
 import heapq
 from implementation import *
 
+class SimpleGraph:
+    def __init__(self):
+        self.edges = {}
+    
+    def neighbors(self, id):
+        return self.edges[id]
 
 class GridWithWeights(SquareGrid):
     def __init__(self, width, height):
@@ -40,7 +46,7 @@ class PriorityQueue:
 
 
 
-def dijskra_search(graph,start, goal):
+def dijkstra_search(graph,start, goal):
 
     frontier  =PriorityQueue()
     frontier.put(start,0)
@@ -57,7 +63,7 @@ def dijskra_search(graph,start, goal):
         if current == goal:
             break
         
-        for next in graph.neighbor(current):
+        for next in graph.neighbors(current):
             new_cost = cost_so_far[current]+graph.cost(current,next)
             if next not in cost_so_far or new_cost < cost_so_far[next]:
                 cost_so_far[next]  =  new_cost
@@ -81,3 +87,13 @@ def reconstruct_path(came_from, start, goal):
     path.reverse()
 
     return path
+
+
+# Testing the code now
+
+came_from, cost_so_far = dijkstra_search(diagram4,(1,4),(7,8))
+draw_grid(diagram4,width=3, point_to=came_from, start=(1,4),goal=(7,8))
+print()
+draw_grid(diagram4, width=3, number=cost_so_far, start=(1, 4), goal=(7, 8))
+print()
+draw_grid(diagram4, width=3, path=reconstruct_path(came_from, start=(1, 4), goal=(7, 8)))
