@@ -35,7 +35,7 @@ def heuristic(a,b):
     return abs(x1 - x2) + abs(y1 - y2)
 
 
-def a_start_search(graph, start, goal):
+def a_star_search(graph, start, goal):
     """
     Implementing A * search
     """
@@ -50,7 +50,7 @@ def a_start_search(graph, start, goal):
     while not frontier.empty():
         current  = frontier.get()
 
-        if current = goal:
+        if current == goal:
             break
 
         for next in graph.neighbors(current):
@@ -58,8 +58,17 @@ def a_start_search(graph, start, goal):
             if next not in cost_so_far or new_cost < cost_so_far[next]:
                 cost_so_far[next]  =  new_cost
                 priority =  new_cost +heuristic(goal,next)
-                 frontier.put(next, priority)
-                 came_from[next] = current
+                frontier.put(next, priority)
+                came_from[next] = current
     return came_from, cost_so_far
 
-    # TRying the code here..
+    # Trying the code here..
+from implementation import *
+
+start,goal =  (1,4),(7,8)
+
+came_from, cost_so_far = a_star_search(diagram4, start,goal)
+draw_grid(diagram4,width=3, point_to = came_from, start = start, goal=goal)
+print()
+
+draw_grid(diagram4,width=3, number = cost_so_far, start=start, goal=goal)
