@@ -1,6 +1,6 @@
 """
 A* Search#
-Both Greedy Best-First Search and A* use a heuristic function. 
+Both Greedy Breadth-First Search and A* use a heuristic function. 
 The only difference is that A* uses both the heuristic and the ordering from Dijkstra’s Algorithm. 
 
 """
