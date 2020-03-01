@@ -1,7 +1,7 @@
 # pathfinding
 Pathfinder is a repsitory showing implementation of pathfinding/search algorithms
 
-## Breadth Fist Search
+## Breadth First Search
 
 
 ## Dijkstra's Search
