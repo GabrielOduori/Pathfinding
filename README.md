@@ -13,3 +13,7 @@ Both Greedy Breadth First Search and a heuristic function
 ## Requirements
 
 The code is written in Python 3.7
+
+Git clone https://github.com/GabrielOduori/pathfinding.git
+
+cd pathfinding to run the scripts.
