@@ -1,5 +1,5 @@
 # Pathfinding algorithms
-Pathfinder is a repsitory showing implementation of pathfinding/search algorithms
+Pathfinder is a repository showing implementation of pathfinding/search algorithms
 
 ## Breadth First Search
 Implementing Breadth First Search in Python.
